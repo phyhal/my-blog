@@ -200,12 +200,20 @@ main { max-width: var(--wrap); margin: 0 auto; padding: 0 24px 40px; }
 .pagination .pager-label { display: block; width: 100%; margin-bottom: 8px;
   color: var(--fg-soft); font-size: 12.5px; letter-spacing: .05em; }
 
-/* ---------- 文章正文（正文居中 + 目录靠右淡显） ---------- */
+/* ---------- 文章正文（正文居中 + 目录靠右 sticky 不压底栏） ---------- */
 main.post {
+  display: grid;
+  grid-template-columns: 1fr var(--toc-w);
+  gap: 32px;
+  align-items: start;
   max-width: var(--wrap); margin: 0 auto; padding: 0 24px 8px;
 }
+main.post.no-toc {
+  display: block;
+  max-width: var(--post-body);
+}
 .post-body {
-  min-width: 0; max-width: var(--post-body); margin: 0 auto;
+  min-width: 0; width: 100%; max-width: var(--post-body); margin: 0 auto;
 }
 .post h1 {
   margin: 0 0 8px; font-size: clamp(1.9rem, 5vw, 2.7rem);
@@ -223,11 +231,9 @@ main.post {
 
 .post-date { color: var(--fg-soft); font-size: 13.5px; margin: 4px 0 28px; }
 
-/* 右侧锚点目录：小字、低对比、随滚动吸顶（浅色/深色主题都刻意压淡） */
+/* 右侧锚点目录：小字、低对比、随正文滚动吸顶，到底随正文退场（不压底栏） */
 aside.toc {
-  position: fixed; top: 96px;
-  /* 位于正文右缘旁；窗口偏窄时自动贴靠屏幕右缘，不溢出 */
-  left: min(calc(50% + var(--post-body) / 2 + 32px), calc(100vw - var(--toc-w) - 16px));
+  position: sticky; top: 96px; align-self: start;
   width: var(--toc-w);
   max-height: calc(100vh - 130px); overflow-y: auto;
   scrollbar-width: thin;
@@ -389,7 +395,8 @@ footer a:hover { color: var(--accent); }
   .post-body { max-width: var(--post-body); margin: 0 auto; width: 100%; }
   /* 标签条放在正文开头、大标题之前 */
   aside.toc {
-    order: -1; position: static; max-height: none; overflow: visible;
+    order: -1; position: static; align-self: auto;
+    max-height: none; overflow: visible;
     border-left: 0; padding-left: 0; margin: 0 auto 8px;
     max-width: var(--post-body); width: 100%;
     top: auto; left: auto;
