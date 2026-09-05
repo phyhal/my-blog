@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>我用 10 周刷完 LeetCode Hot100 的专题计划 · 刷题笔记</title>
+<link rel="stylesheet" href="style.css">
+</head><body>
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+<header class="site">
+  <a class="brand" href="index.html">刷题笔记</a>
+  <div class="head-actions">
+    <a class="back-link" href="index.html">← 返回首页</a>
+    <button class="icon-btn" id="theme-toggle" type="button" aria-label="切换深浅主题">☾</button>
+  </div>
+</header>
+<main class="post">
+  <article class="post-body">
+    <h1>我用 10 周刷完 LeetCode Hot100 的专题计划</h1>
+    <p class="post-date">2026-09-05</p>
+    <p>很多人刷 LeetCode 的方式是：打开题单，从第一题开始往后做。做到第 30 题发现前面全忘了，然后焦虑地回头重刷——这是我去年干过的事。</p>
+<p>这次换个思路：<strong>按题型分组，按面试频率排序，每个专题只留一个主模板。</strong> 写出来既是给自己看的路线图，也算一份公开的承诺。</p>
+<h2 id="sec-1">为什么按题型分组，而不是按题号</h2>
+<p>Hot100 的 100 题看起来很多，但拆开看，其实只有十来种&quot;思考模型&quot;。比如你掌握了&quot;左右指针收缩&quot;这一个动作，<strong>三数之和、盛水容器、接雨水</strong>虽然题干完全不同，本质是同一道题。</p>
+<p>反过来说，如果你一题一法地背，100 题就是 100 个孤立记忆，不遗忘才怪。按题型刷的意义是：<strong>把记忆负担从 100 压到 10 左右</strong>——记住十个模板，比记住一百道题靠谱得多。</p>
+<p>我把 Hot100 分成十二类，按公司面试的出现频率排了序：</p>
+<table>
+<tr><th>优先级</th><th>专题</th><th>核心方法一句话</th><th>代表题</th></tr>
+<tr><td>1</td><td>哈希表 / 集合</td><td>空间换时间：记录&quot;见没见过&quot;</td><td>两数之和、最长连续序列</td></tr>
+<tr><td>2</td><td>双指针</td><td>左右指针把 O(n²) 降到 O(n)</td><td>三数之和、接雨水</td></tr>
+<tr><td>3</td><td>滑动窗口</td><td>维护一段&quot;合法区间&quot;</td><td>无重复最长子串、最小覆盖子串</td></tr>
+<tr><td>4</td><td>链表</td><td>哑结点 + 多指针</td><td>反转链表、合并 K 个链表</td></tr>
+<tr><td>5</td><td>二分查找</td><td>在&quot;答案区间&quot;上二分</td><td>搜索旋转排序数组、寻找峰值</td></tr>
+<tr><td>6</td><td>二叉树</td><td>递归三问</td><td>最近公共祖先、序列化</td></tr>
+<tr><td>7</td><td>回溯</td><td>DFS + 状态撤销</td><td>全排列、N 皇后</td></tr>
+<tr><td>8</td><td>BFS / DFS</td><td>BFS 求最短，DFS 求路径</td><td>岛屿数量、克隆图</td></tr>
+<tr><td>9</td><td>动态规划</td><td>定义状态 → 写转移</td><td>最长递增子序列、编辑距离</td></tr>
+<tr><td>10</td><td>堆 / 单调栈 / 队列</td><td>找最值变 O(1)</td><td>前 K 个高频、每日温度</td></tr>
+<tr><td>11</td><td>图论</td><td>建图 + 遍历框架</td><td>课程表、网络延迟时间</td></tr>
+<tr><td>12</td><td>数据结构设计</td><td>组合基础结构</td><td>LRU 缓存、Trie</td></tr>
+</table>
+<p>排序依据很朴素：<strong>越靠前，面试越容易撞上，模板越短，投入产出比越高。</strong> 哈希、双指针、滑动窗口、链表、二分这五个专题，几乎每场面试至少考一题，属于&quot;不会就直接挂&quot;的级别，所以我把它们放在第一阶段集中攻克。</p>
+<p>DP 和图论虽然难，但出现频率相对集中在中后段，放在精力最好的中段去啃，比一开始就硬刚更合理。</p>
+<h2 id="sec-2">十个专题的&quot;一句话方法&quot;</h2>
+<p>每个专题我都会提炼成一句能默写的话。下面这些是笔记版，实际刷题时我会把它们写成真正的代码骨架。</p>
+<p><strong>哈希表</strong>——<code>unordered_map</code> 存下标或计数，判断补数、重复、分组。模板就两种用法，记住就够。</p>
+<p><strong>双指针</strong>——首尾收缩（有序数组）、快慢指针（环/删除）。核心判断力在于：<strong>为什么这一侧一定能舍弃？</strong> 答不上来就说明没真懂。</p>
+<p><strong>滑动窗口</strong>——右指针扩张 → 条件破坏 → 左指针收缩 → 更新答案。四个动作的顺序不能乱，我一开始总把&quot;更新答案&quot;写在收缩之前，导致漏掉边界。</p>
+<p><strong>链表</strong>——<strong>永远用哑结点（dummy）</strong>。这是我踩过最多次的坑：不带头结点特判，改着改着就把 <code>head</code> 弄丢了。加上 <code>dummy</code> 之后，插入和删除统一成一种写法。</p>
+<p><strong>二分查找</strong>——最容易写错的是边界。我的固定写法是 <code>[left, right]</code> 闭区间，然后严格想清楚 <code>mid</code> 该往上取整还是往下取整。<strong>判断条件必须在数轴上单调</strong>，这是二分能用的唯一前提。</p>
+<p><strong>二叉树</strong>——递归三问：<strong>当前层做什么、返回什么、何时终止。</strong> 三个问题答完，代码基本就出来了。层序遍历用队列，递归和迭代必须能手写互转，面试常被要求换写法。</p>
+<p><strong>回溯</strong>——<code>path / used / 选择列表</code> 三件套，状态撤销写在递归调用之后。<strong>剪枝写在递归之前</strong>，这是最容易忘的一步。</p>
+<p><strong>BFS / DFS</strong>——BFS 求最短步数，DFS 求路径与连通性，不要混用。网格题记得写方向数组和边界判断，漏了 visited 就会死循环。</p>
+<p><strong>动态规划</strong>——四步：<strong>定义状态 → 写转移方程 → 定初始值 → 定遍历顺序。</strong> 背包问题尤其要注意 01 背包和完全背包的遍历顺序差异，这个细节我打算专门写一篇。</p>
+<p><strong>堆 / 单调栈</strong>——Top-K 用小顶堆（不是大顶堆！），单调栈的关键判断是&quot;维护递增还是递减栈&quot;，画个图就清楚了。</p>
+<h2 id="sec-3">十个阶段，十周</h2>
+<p>我把 10 周分成五个阶段，每个阶段末都有硬性验收，不过关就暂停新题：</p>
+<p>1. <strong>地基（第 1—3 周）</strong>：哈希、双指针、滑动窗口、链表、二分 —— 约 30 题。目标是能默写五个模板。</p>
+<p>2. <strong>递归框架（第 4—5 周）</strong>：二叉树、回溯、BFS/DFS —— 约 20 题。重点攻克递归边界。</p>
+<p>3. <strong>DP 与堆栈（第 6—8 周）</strong>：动态规划、单调栈/队列、堆 —— 约 25 题。全程精力最好的中段。</p>
+<p>4. <strong>图论与设计（第 9 周）</strong>：图、拓扑、并查集、数据结构设计 —— 约 15 题。优先级略低，时间紧可以先砍。</p>
+<p>5. <strong>二刷与模拟（第 10 周）</strong>：随机抽 20 题限时口述 + 写码，验收。</p>
+<p>每周日下午固定做 90 分钟限时模拟——不查资料、不切屏，完全按面试状态来。这个安排参考了完整的执行表（含逐日任务、错题记录与模拟成绩填写位），我放在同目录的配套表格里了。</p>
+<h2 id="sec-4">我会怎么判断这个计划有没有用</h2>
+<p>不是&quot;刷完就算&quot;，而是三条可验证的标准：</p>
+<li><strong>限时盲写</strong>：Medium 题 35 分钟内跑通，Easy 题 15 分钟内，正确率 ≥ 80%。</li>
+<li><strong>间隔重做</strong>：每道题做完后第 2 天、第 7 天各重做一次。同一题两次还写不出，就回到模板重新过，不许继续刷新题。</li>
+<li><strong>随机抽测</strong>：第 10 周随机抽 20 题，一次通过率 ≥ 85%。</li>
+<p>「看完题解觉得会了」不算掌握——这是我过去最大的自我欺骗。真正的掌握标准只有两个：<strong>限时内一次跑通，且能口述思路给一个不在场的人听。</strong></p>
+<h2 id="sec-5">主动放弃的部分</h2>
+<p>也要说清楚我不打算做什么：</p>
+<li><strong>不刷偏题难题</strong>，Hot100 之外的题一律不碰，避免范围无限膨胀。</li>
+<li><strong>排序、位运算、数学类</strong>在 Hot100 中占比低且难成体系，只当碎片时间补充，不单独排专题。</li>
+<li><strong>每个专题只留一个主模板</strong>，一题一法的&quot;炫技解法&quot;不记。面试要的是稳定写出主解，不是秀最优解。</li>
+<p>时间一旦紧张，降级顺序很明确：先砍图论与设计类（第 9 周），再砍 DP 的冷门题型，前五个基础专题永远最后动。保住它们，就保住了面试的手撕环节。</p>
+<p>---</p>
+<p>这套方法的核心其实就一句：<strong>把&quot;题目&quot;这个维度换成&quot;思考模型&quot;这个维度。</strong> 100 道题变成十来个模板，记忆负担降下来，才有余力去练速度和口述——而后者，才是面试真正考的东西。</p>
+<p>后面每完成一个专题，我会把模板和踩过的坑单独整理成文。</p>
+  </article>
+  <aside class="toc" aria-label="目录"><p class="toc-title">目录</p><ol class="toc-list"><li class="toc-h2"><a href="#sec-1">为什么按题型分组，而不是按题号</a></li><li class="toc-h2"><a href="#sec-2">十个专题的"一句话方法"</a></li><li class="toc-h2"><a href="#sec-3">十个阶段，十周</a></li><li class="toc-h2"><a href="#sec-4">我会怎么判断这个计划有没有用</a></li><li class="toc-h2"><a href="#sec-5">主动放弃的部分</a></li></ol></aside>
+</main>
+<nav class="pager">
+  <span class="prev"><a href="2026-09-05-hot100-roadmap.html" title="LeetCode Hot100 突击计划：我准备这样刷算法"><span class="lbl">‹ 上一篇</span>LeetCode Hot100 突击计划：我准备这样刷算法</a></span>
+  <span class="next"><a href="2026-09-04-hello-world.html" title="你好,世界"><span class="lbl">下一篇 ›</span>你好,世界</a></span>
+</nav>
+<footer>发布于 2026-09-05 · 用爱发电</footer>
+<button class="top-btn" id="back-to-top" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="script.js"></script>
+</body></html>

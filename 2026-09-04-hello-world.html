@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>你好,世界 · 刷题笔记</title>
+<link rel="stylesheet" href="style.css">
+</head><body>
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+<header class="site">
+  <a class="brand" href="index.html">刷题笔记</a>
+  <div class="head-actions">
+    <a class="back-link" href="index.html">← 返回首页</a>
+    <button class="icon-btn" id="theme-toggle" type="button" aria-label="切换深浅主题">☾</button>
+  </div>
+</header>
+<main class="post">
+  <article class="post-body">
+    <h1>你好,世界</h1>
+    <p class="post-date">2026-09-04</p>
+    <p>这是我的第一篇博客文章。</p>
+<p>这个站点是用一个很简单的 Python 脚本生成的:每篇文章是一个 Markdown 文件,放在 <code>posts/</code> 目录下,运行 <code>python3 build.py</code> 就会把它们渲染成静态 HTML 页面,输出到 <code>site/</code> 目录。</p>
+<p>之所以这样做,是因为它足够透明——没有黑盒框架,没有几百个依赖包,想改样式就直接改 <code>style.css</code>,想改排版逻辑就直接改 <code>build.py</code>。等以后需要更多功能(比如分页、评论、搜索),可以再逐步加。</p>
+<h2 id="sec-1">代码块也是支持的</h2>
+<pre><code>
+def greet(name: str) -&gt; str:
+    return f&quot;你好, {name}!&quot;
+
+print(greet(&quot;世界&quot;))
+</code></pre>
+<p>先写到这里,后面会陆续更新技术笔记。</p>
+  </article>
+  <aside class="toc" aria-label="目录"><p class="toc-title">目录</p><ol class="toc-list"><li class="toc-h2"><a href="#sec-1">代码块也是支持的</a></li></ol></aside>
+</main>
+<nav class="pager">
+  <span class="prev"><a href="2026-09-05-leetcode-hot100-plan.html" title="我用 10 周刷完 LeetCode Hot100 的专题计划"><span class="lbl">‹ 上一篇</span>我用 10 周刷完 LeetCode Hot100 的专题计划</a></span>
+  <span class="next"><a href="2026-09-03-static-site-notes.html" title="为什么我选择自己写静态站点生成器"><span class="lbl">下一篇 ›</span>为什么我选择自己写静态站点生成器</a></span>
+</nav>
+<footer>发布于 2026-09-04 · 用爱发电</footer>
+<button class="top-btn" id="back-to-top" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="script.js"></script>
+</body></html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>为什么我选择自己写静态站点生成器 · 刷题笔记</title>
+<link rel="stylesheet" href="style.css">
+</head><body>
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+<header class="site">
+  <a class="brand" href="index.html">刷题笔记</a>
+  <div class="head-actions">
+    <a class="back-link" href="index.html">← 返回首页</a>
+    <button class="icon-btn" id="theme-toggle" type="button" aria-label="切换深浅主题">☾</button>
+  </div>
+</header>
+<main class="post no-toc">
+  <article class="post-body">
+    <h1>为什么我选择自己写静态站点生成器</h1>
+    <p class="post-date">2026-09-03</p>
+    <p>市面上的静态博客框架(Hexo、Jekyll、Hugo)功能都很全,但对于一个刚起步、只想写点东西的博客来说,有时候反而是负担:要装 Node/Ruby/Go 环境,要学一套主题系统,升级时还可能踩依赖版本的坑。</p>
+<p>这个博客用的是一个不到 150 行的 Python 脚本:</p>
+<p>1. 读取 <code>posts/*.md</code>,解析文件头(标题、日期、标签)</p>
+<p>2. 用 <code>markdown</code> 库把正文转成 HTML</p>
+<p>3. 套进一个简单的 HTML 模板</p>
+<p>4. 输出到 <code>site/</code> 目录,直接就是可以部署的静态文件</p>
+<p>好处是每一行代码我都看得懂,想加什么功能就自己加。坏处是主题、插件生态肯定不如成熟框架。等博客写多了、需求变复杂了,再迁移到 Hexo 或 Hugo 也不迟——Markdown 文件本身是通用的,迁移成本不高。</p>
+  </article>
+  
+</main>
+<nav class="pager">
+  <span class="prev"><a href="2026-09-04-hello-world.html" title="你好,世界"><span class="lbl">‹ 上一篇</span>你好,世界</a></span>
+  <span class="next"><span class="disabled">已经是最后一篇</span></span>
+</nav>
+<footer>发布于 2026-09-03 · 用爱发电</footer>
+<button class="top-btn" id="back-to-top" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="script.js"></script>
+</body></html>
